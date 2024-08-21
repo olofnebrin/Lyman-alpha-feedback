@@ -55,12 +55,12 @@ def M_F(N_H, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, f_H2 = 0.0, xHII = 0.0,
     # Recoil-related factors:
 
     xbar       = 2.54e-3*(T_100**(-0.5))      # Recoil parameter
-    xt1        = 1.207*(atau**(1./3.))*xbar 
+    xt1        = 1.207*(atau**(1/3))*xbar 
 
     xt1_crit   = 0.55*np.exp(-5.8*(taustar**0.5)) + 0.98
     crec       = 0.54*np.exp(-1e3*taustar) + 0.63*(1.0-np.exp(-1e3*taustar))
     eta_rec    = 0.35 + 0.65*(taustar**1.5)/(taustar**1.5 + 0.00395)
-    Grec       = 1.0 + eta_rec*(0.2*((xt1/xt1_crit)**2.0) + 0.005*((xt1/xt1_crit)**4.0))
+    Grec       = 1.0 + eta_rec*(0.2*((xt1/xt1_crit)**2) + 0.005*((xt1/xt1_crit)**4))
 
 
     # Factors related to continuum absorption:
@@ -70,25 +70,24 @@ def M_F(N_H, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, f_H2 = 0.0, xHII = 0.0,
     cabs       = ((1.0-np.exp(-20.0*taustar))/(3.0*(1.0 + (P/50)**0.25 + (P/300)**0.75))
                + 0.17*np.exp(-20.0*taustar) )
     eta_abs    = 1.1*(1.0 - np.exp(-6.54*(taustar**1.06)))
-    Fabs       = ( (3.4*epst1)**cabs + (eta_abs*epst1)**(4.*cabs))**(3./(4.*cabs))
+    Fabs       = ( (3.4*epst1)**cabs + (eta_abs*epst1)**(4*cabs))**(3/(4*cabs))
 
     # Factors related to velocity gradients:
 
-    b          = np.sqrt(2.*kB*T/mH)/kms      # Thermal velocity (km/s)
+    b          = np.sqrt(2*kB*T/mH)/kms       # Thermal velocity (km/s)
     Rdot       = np.abs( vmax )/b             # Dimensionless expansion/contraction rate
 
     cvel       = 0.6/(1.0 + (P/1e3)**0.5)
     eta_vel    = 1.0 - np.exp(- (taustar/0.1)**0.7)
     Gvel       = 0.058*(Rdot**0.65)*(1.0-np.exp(-9.5*(taustar**0.75)))*np.exp(-0.02*(Rdot**0.6))
-    Fvel       = ((1.0 + 0.75*eta_vel*Rdot)**(2.*cvel/3.) - 1.0)**(1./crec)
+    Fvel       = ((1.0 + 0.75*eta_vel*Rdot)**(2*cvel/3) - 1.0)**(1/crec)
 
     # Put it all together:
 
-    A   = 1.0 + (P/(Grec*Pcritpoint)) + (xt1/xt1_crit)**(3.*crec) + Fabs + 0.29*Rdot
+    A   = 1.0 + (P/(Grec*Pcritpoint)) + (xt1/xt1_crit)**(3*crec) + Fabs + 0.29*Rdot
 
-    M_F = eta_s*(atau**(1./3.))/(
-          A**(1./3.) + (P/((Grec+Gvel)*Pcritext)) + Fvel)
+    M_F = eta_s*(atau**(1/3))/(
+          A**(1/3) + (P/((Grec+Gvel)*Pcritext)) + Fvel)
 
     return M_F
-
-                                     
+                        
