@@ -5,8 +5,8 @@ from LyaDestruction import *
 from ConstantsParameters import *
 
 
-def M_F(N_H, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, f_H2 = 0.0, xHII = 0.0,
-        nH = 1.0, nHeI = 1.0, z = 0.0, sigma_dHsun = 0.941e-21):
+def M_F_fit(N_H, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, f_H2 = 0.0, xHII = 0.0,
+            nH = 1e-5, z = 0.0, sigma_dHsun = 0.941e-21):
     """ The Lya force multiplier. Arguments:
 
         N_H:         Total hydrogen (HI+HII+H2) column density (cm^-2)
@@ -90,5 +90,4 @@ def M_F(N_H, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, f_H2 = 0.0, xHII = 0.0,
           A**(1/3) + (P/((Grec+Gvel)*Pcritext)) + Fvel)
 
     return M_F
-
-           
+                    
