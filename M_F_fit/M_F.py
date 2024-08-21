@@ -80,7 +80,7 @@ def M_F(N_H, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, f_H2 = 0.0, xHII = 0.0,
     cvel       = 0.6/(1.0 + (P/1e3)**0.5)
     eta_vel    = 1.0 - np.exp(- (taustar/0.1)**0.7)
     Gvel       = 0.058*(Rdot**0.65)*(1.0-np.exp(-9.5*(taustar**0.75)))*np.exp(-0.02*(Rdot**0.6))
-    Fvel       = ((1.0 + 0.75*eta_vel*Rdot)**(2*cvel/3) - 1.0)**(1/crec)
+    Fvel       = ((1.0 + 0.75*eta_vel*Rdot)**(2*cvel/3) - 1.0)**(1/cvel)
 
     # Put it all together:
 
