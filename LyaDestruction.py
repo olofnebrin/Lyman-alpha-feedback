@@ -63,7 +63,7 @@ def p_d(nHI, nHeI, nH2, T, z):
     
     C_H2   = 1.7e-9*(T_100**0.3)*nH2
     
-    C_HI   = ( 4.1e-11*np.exp(-(1.6/T)**(3./4.) - 0.15*T)
+    C_HI   = ( 4.1e-11*np.exp(-(1.6/T)**(3/4) - 0.15*T)
            + (1.6e-10 + 1.57e-12*(T**1.1))/(
             (8.9*(T**(-0.55)) + 0.078*(T**0.35))**2.0))*nHI
 
@@ -74,14 +74,14 @@ def p_d(nHI, nHeI, nH2, T, z):
 
     # Destruction probability from 2p -> 2s:
 
-    R_2p2s = (2./3.)*A_2p2s + C_2p2s + Gamma_CMB2p2s
+    R_2p2s = (2/3)*A_2p2s + C_2p2s + Gamma_CMB2p2s
     R_2s2p = A_2s2p + C_2s2p + Gamma_CMB2s2p
 
     p_dHI  = R_2p2s/((A_Lya/A_2ph)*(A_2ph + R_2s2p) + R_2p2s)
 
     # Destruction probability from H2 line absorption:
 
-    p_dH2  = np.minimum((33.*np.exp(-14540.0/T) + 13.*np.exp(-15564.0/T))/(
+    p_dH2  = np.minimum((33.0*np.exp(-14540.0/T) + 13.0*np.exp(-15564.0/T))/(
              46.0 + 1e3*np.exp(-(1e3/T)**1.5)), 1.3e-3)*(nH2/nHI)
 
     # Total destruction probability:
