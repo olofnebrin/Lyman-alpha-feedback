@@ -9,7 +9,7 @@ This repository contains files related to the following paper on Lyman-α (Lyα)
 
 [Nebrin et al. (2024), *Strong Lyman-α feedback at Cosmic Dawn: Implications for the first stars and galaxies, star clusters, and direct-collapse black holes*](INSERT_LINK_HERE).
 
-Authors & contributors: Olof Nebrin, Aaron Smith, Kevin Lorinc, Johan Hörnquist, and Åsa Larsson. 
+Authors & contributors: Olof Nebrin, Aaron Smith, Kevin Lorinc, Åsa Larsson, and Johan Hörnquist. 
 
 ### Description of files
 
