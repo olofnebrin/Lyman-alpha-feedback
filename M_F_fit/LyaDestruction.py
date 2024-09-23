@@ -11,13 +11,13 @@ from ConstantsParameters import *
 ###############################################################
 
 
-def tau_cabs(D_Dsun, N_H, f_H2, sigma_dHsun):
+def tau_cabs(D_Dsun, N_H, N_H2, sigma_dHsun):
     """ The cloud continuum absorption optical depth.
         Arguments:
 
         D_Dsun:      Dust-to-gas ratio in Solar units
-        N_H:         Total hydrogen (HI+HII+H2) column density (cm^-2)
-        f_H2:        Molecular hydrogen fraction (for column density)
+        N_H:         Average total hydrogen (HI+HII+H2) column density (cm^-2)
+        N_H2:        Average H2 column density (cm^-2)
         sigma_dHsun: Dust absorption cross-section at Lya at Solar
                      dust abundance, per H nucelon (cm^2/H) """
 
@@ -27,7 +27,7 @@ def tau_cabs(D_Dsun, N_H, f_H2, sigma_dHsun):
 
     # Raman scattering optical depth:
 
-    tau_H2abs = 2.1e-4*(f_H2*N_H/1e21)
+    tau_H2abs = 2.1e-4*(N_H2/1e21)
 
     # Total continuum absorption optical depth:
 
@@ -41,14 +41,16 @@ def tau_cabs(D_Dsun, N_H, f_H2, sigma_dHsun):
 #######                                                 #######
 ###############################################################
 
-def p_d(nHI, nHeI, nH2, T, z):
+def p_d(nHI, nHeI, nH2, T, z, M = 0.0, b_s = 0.4):
     """ The Lya destruction probability. Arguments:
 
-        nHI:   The H I number density (cm^-3)
-        nHeI:  The He I number density (cm^-3)
-        nH2:   The H2 number density (cm^-3)
+        nHI:   The average H I number density (cm^-3)
+        nHeI:  The average He I number density (cm^-3)
+        nH2:   The average H2 number density (cm^-3)
         T:     Gas temperature
-        z:     Redshift """
+        z:     Redshift
+        M:     3D turbulent Mach number (controls turbulent fluctuations)
+        b_s:   Turbulent driving parameter (1/3 < b_s < 1). (default = 0.4, i.e. 'natural' mix) """
 
     # CMB stimulated transition rates:
 
@@ -57,15 +59,16 @@ def p_d(nHI, nHeI, nH2, T, z):
 
     # 2s -> 2p rates for He I, H2, and H I:
 
-    T_100  = T/100.0
+    T_100  = T/100.0         # Temperature normalization
+    Turb   = 1 + (b_s*M)**2  # Clumping factor for turbulent medium
 
-    C_HeI  = 2.6e-9*(T_100**0.315)*nHeI
+    C_HeI  = 2.6e-9*(T_100**0.315)*nHeI*Turb
     
-    C_H2   = 1.7e-9*(T_100**0.3)*nH2
+    C_H2   = 1.7e-9*(T_100**0.3)*nH2*Turb
     
     C_HI   = ( 4.1e-11*np.exp(-(1.6/T)**(3/4) - 0.15*T)
            + (1.6e-10 + 1.57e-12*(T**1.1))/(
-            (8.9*(T**(-0.55)) + 0.078*(T**0.35))**2.0))*nHI
+            (8.9*(T**(-0.55)) + 0.078*(T**0.35))**2.0))*nHI*Turb
 
     # Total 2s <-> 2p rates:
 
