@@ -5,13 +5,13 @@ from LyaDestruction import *
 from ConstantsParameters import *
 
 
-def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic = None,
+def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, M = 0.0, b_s = 0.4,
             N_H2_average = 0.0, N_HII_average = 0.0, nHI_average = 1e-8, nHeI_average = 0.0,
             nH2_average = 0.0, z = 0.0, sigma_dHsun = sigma_dHsun_HD23):
     
     """ The Lya force multiplier. Arguments:
 
-        N_HI_average:  Solid-angle average HI column density (cm^-2).
+        N_HI_average:  Average HI column density (cm^-2).
         
         T:             Temperature (K).
         
@@ -21,40 +21,37 @@ def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic =
         
         vmax:          Cloud expansion/contraction velocity (km/s).
         
-        N_HI_harmonic: Harmonic solid-angle average HI column density (cm^-2). Only different from
-                       N_HI_average for anisotropic clouds. If left unspecified, it is assumed
-                       to equal N_HI_average.
+        M:             3D turbulent Mach number (controls turbulent fluctuations).
 
-        N_H2_average:  Solid-angle average H2 column density (cm^-2).
+        b_s:           Turbulent driving parameter (1/3 < b_s < 1). (default = 0.4, i.e. 'natural' mix)
 
-        N_HII_average: Solid-angle average H II column density (cm^-2).
+        N_H2_average:  Average H2 column density (cm^-2).
 
-        nHI_average:   HI number density (cm^-3), weighted by solid-angle average HI column density.
+        N_HII_average: Average H II column density (cm^-2).
 
-        nHeI_average:  He I number density (cm^-3), weighted by solid-angle average HI column density.
+        nHI_average:   Average HI number density (cm^-3).
 
-        nH2_average:   H2 number density (cm^-3), weighted by solid-angle average HI column density.
+        nHeI_average:  Average He I number density (cm^-3).
+
+        nH2_average:   Average H2 number density (cm^-3).
         
         z:             Redshift (default = 0.0).
         
         sigma_dHsun:   Dust absorption cross-section at Lya at Solar dust abundance,
                        per H nucelon (cm^2/H) (default = Hensley & Draine 2023). """
 
-    if N_HI_harmonic is None:
-        N_HI_harmonic = N_HI_average
-
 
     # Quantities and variables of interest:
 
-    T_100       = T/100.0                      # Convenient temperature normalization
-
-    a_v         = 4.7e-3*(T_100**(-0.5))       # Voigt parameter
-    sigma0      = 5.88e-13*(T_100**(-0.5))     # Lya cross-section @ line center
-    tau_cl_A    = sigma0*N_HI_average          # Lya optical depth @ line center, solid-angle averaged
-    tau_cl_H    = sigma0*N_HI_harmonic         # Lya optical depth @ line center, harmonic solid-angle averaged
-    tau_cl_AH   = np.sqrt(tau_cl_A*tau_cl_H)   # Geometric mean of tau_cl_A & tau_cl_H
-    eta_tau     = tau_cl_H/tau_cl_A            # Ratio between harmonic & standard solid-angle avearge optical depths
-    atauA       = a_v*tau_cl_A
+    T_100        = T/100.0                        # Convenient temperature normalization
+    Turb         = 1.0 + (b_s*M)**2               # Convenient turbulence-related factor       
+    
+    a_v          = 4.7e-3*(T_100**(-0.5))         # Voigt parameter
+    sigma0       = 5.88e-13*(T_100**(-0.5))       # Lya cross-section @ line center
+    tau_cl_A     = sigma0*N_HI_average            # Lya optical depth @ line center, using average alpha_0
+    tau_cl_tilde = tau_cl_A/(Turb**(2/3))         # Lya optical depth @ line center, using alpha0_tilde
+    tau_cl_star  = np.sqrt(tau_cl_tilde*tau_cl_A) # Geometric mean of tau_cl_A & tau_cl_tilde
+    atauA        = a_v*tau_cl_A
 
     # Factor related to spatial source distribution:
 
@@ -63,7 +60,7 @@ def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic =
 
     # Factors related to the Lya destruction probability:
 
-    P           = np.sqrt(6.*np.pi)*p_d(nHI_average, nHeI_average, nH2_average, T, z)*tau_cl_AH/2.0
+    P           = np.sqrt(6.*np.pi)*p_d(nHI_average, nHeI_average, nH2_average, T, z, M, b_s)*tau_cl_star/2.0
 
     Pcritpoint  = 1.8*np.exp(-(taustar**0.25))
     Pcritext    = 1.5*(taustar**(-0.6))*np.exp(-10.0*taustar) + 3.6
@@ -71,8 +68,8 @@ def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic =
     # Recoil-related factors:
 
     xbar        = 2.54e-3*(T_100**(-0.5))      # Recoil parameter
-    xt1         = 1.207*(eta_tau**(1/6))*(atauA**(1/3))*xbar 
-
+    
+    xt1         = 1.207*(atauA**(1/3))*xbar/(Turb**(1/9))
     xt1_crit    = 0.55*np.exp(-5.8*(taustar**0.5)) + 0.98
     crec        = 0.54*np.exp(-1e3*taustar) + 0.63*(1.0-np.exp(-1e3*taustar))
     eta_rec     = 0.35 + 0.65*(taustar**1.5)/(taustar**1.5 + 0.00395)
@@ -83,7 +80,7 @@ def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic =
 
     N_H_average = N_HI_average + N_HII_average + 2*N_H2_average
 
-    epst1       = 0.4707*(eta_tau**(2/3))*(atauA**(1/3))*tau_cabs(D_Dsun, N_H_average, N_H2_average, sigma_dHsun)
+    epst1       = 0.4707*(atauA**(1/3))*tau_cabs(D_Dsun, N_H_average, N_H2_average, sigma_dHsun)/(Turb**(4/9))
 
     cabs        = ((1.0-np.exp(-20.0*taustar))/(3.0*(1.0 + (P/50)**0.25 + (P/300)**0.75))
                 + 0.17*np.exp(-20.0*taustar) )
@@ -92,8 +89,8 @@ def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic =
 
     # Factors related to velocity gradients:
 
-    b           = np.sqrt(2*kB*T/mH)/kms           # Thermal velocity (km/s)
-    Rdot        = (eta_tau**0.5)*np.abs( vmax )/b  # Effective dimensionless expansion/contraction rate
+    b           = np.sqrt(2*kB*T/mH)/kms            # Thermal velocity (km/s)
+    Rdot        = (np.abs( vmax )/b)/(Turb**(1/3))  # Effective dimensionless expansion/contraction rate
 
     cvel        = 0.6/(1.0 + (P/1e3)**0.5)
     eta_vel     = 1.0 - np.exp(- (taustar/0.1)**0.7)
@@ -104,7 +101,7 @@ def M_F_fit(N_HI_average, T, D_Dsun, taubar_s = 0.0, vmax = 0.0, N_HI_harmonic =
 
     A   = 1.0 + (P/(Grec*Pcritpoint)) + (xt1/xt1_crit)**(3*crec) + Fabs + 0.29*Rdot
 
-    M_F = eta_s*(eta_tau**(2/3))*(atau_A**(1/3))/(
+    M_F = eta_s*(atauA**(1/3))*(Turb**(-4/9))/(
           A**(1/3) + (P/((Grec+Gvel)*Pcritext)) + Fvel)
 
     return M_F
