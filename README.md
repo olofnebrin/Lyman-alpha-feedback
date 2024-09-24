@@ -20,7 +20,7 @@ This folder contains a Python implementation of the fit to the Lyα force multip
 
 #### MCRT_forcemultiplier:
 
-This folder contains the Monte Carlo radiative transfer (MCRT) data for the Lyα force multiplier, as plotted in Fig. 5 in Nebrin+ (2024). Each data file is named in a self-explanatory manner with respect to Fig. 5 in Nebrin+ (2024). In each file, the first column is a_v*tau_cl, and the second column the force multiplier. If you use this data, cite [Nebrin et al. (2024)](INSERT), and [Smith et al. (2015)](https://ui.adsabs.harvard.edu/abs/2015MNRAS.449.4336S/abstract). 
+This folder contains the Monte Carlo radiative transfer (MCRT) data for the Lyα force multiplier, as plotted in Fig. 5 in [Nebrin et al. (2024)](INSERT). Each data file is named in a self-explanatory manner with respect to Fig. 5 in Nebrin+ (2024). In each file, the first column is a_v*tau_cl, and the second column the force multiplier. If you use this data, cite [Nebrin et al. (2024)](INSERT), and [Smith et al. (2015)](https://ui.adsabs.harvard.edu/abs/2015MNRAS.449.4336S/abstract). 
 
 #### H_H_cross_section:
 
