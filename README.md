@@ -5,9 +5,11 @@
 
 ### Purpose of repository
 
-This repository contains files and data related to the following paper on Lyman-α (Lyα) feedback:
+This repository contains files and data related to the following paper on Lyman-α (Lyα) radiation pressure feedback:
 
 [Nebrin et al. (2024), 'Lyman-α feedback prevails at Cosmic Dawn: Implications for the first stars and galaxies, star clusters, and direct-collapse black holes'](INSERT).
+
+Radiation pressure from trapped Lyα photons is one of the most important processes that regulate how efficiently the Universe form stars. 
 
 #### Authors & contributors: Olof Nebrin, Aaron Smith, Kevin Lorinc, Johan Hörnquist, Åsa Larsson, Garrelt Mellema, and Sambit K. Giri 
 
