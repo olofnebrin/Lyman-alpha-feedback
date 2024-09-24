@@ -11,11 +11,11 @@ This repository contains files and data related to the following paper on Lyman-
 
 Authors & contributors: Olof Nebrin, Aaron Smith, Kevin Lorinc, Johan Hörnquist, and Åsa Larsson. 
 
-### Description of files
+### Description of folders
 
 #### M_F_fit:
 
-The folder M_fit contains a Python implementation of the fit to the Lyα force multiplier, as given the paper, as well as related quantities 
+This folder contains a Python implementation of the fit to the Lyα force multiplier, as given the paper, as well as related quantities 
 (e.g. the destruction probability). An example plot is included too. If you use these fits or results in your work, please cite Nebrin+ (2024).
 
 #### M_F_MCRT
