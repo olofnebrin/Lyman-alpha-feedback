@@ -18,6 +18,6 @@ Authors & contributors: Olof Nebrin, Aaron Smith, Kevin Lorinc, Johan Hörnquist
 This folder contains a Python implementation of the fit to the Lyα force multiplier, as given the paper, as well as related quantities 
 (e.g. the destruction probability). An example plot is included too. If you use these fits or results in your work, please cite Nebrin+ (2024).
 
-#### M_F_MCRT
+#### MCRT_forcemultiplier:
 
 This folder contains the Monte Carlo radiative transfer (MCRT) data for the Lyα force multiplier, as plotted in Fig. 5 in Nebrin+ (2024). Each data file is labelled in a self-explanatory manner with respect to Fig. 5 in Nebrin+ (2024). In each file, the first column is a_v*tau_cl, and the second column the force multiplier. If you use this data, cite Nebrin+ (2024), as well as [Smith et al. (2015), 'The Lyman α signature of the first galaxies', MNRAS, 449, 4](https://ui.adsabs.harvard.edu/abs/2015MNRAS.449.4336S/abstract). 
