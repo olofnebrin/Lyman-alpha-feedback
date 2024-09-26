@@ -1,0 +1,11 @@
+README.md
+setup.py
+src/Lyman-alpha-feedback/ConstantsParameters.py
+src/Lyman-alpha-feedback/LyaDestruction.py
+src/Lyman-alpha-feedback/M_F_fit.py
+src/Lyman-alpha-feedback/__init__.py
+src/anaxagoras.egg-info/PKG-INFO
+src/anaxagoras.egg-info/SOURCES.txt
+src/anaxagoras.egg-info/dependency_links.txt
+src/anaxagoras.egg-info/requires.txt
+src/anaxagoras.egg-info/top_level.txt
