@@ -28,7 +28,7 @@ This folder contains the Monte Carlo radiative transfer (MCRT) data for the Lyα
 
 The file in this folder contains the data for the cross-section for H(2s) + H(1s) -> H(2p) + H(1s). The first column is collision energy (in eV), and the second column the cross-section (in cm<sup>2</sup>). If you use this data, cite [Nebrin et al. (2024)](INSERT), [Hörnquist et al. (2022)](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.106.062821), and [Hörnquist et al. (2023)](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.108.052811).
 
-#### Contact
+### Contact
 
 If you have any questions regarding the paper or the files in this repository, don't hesitate to reach out at: olof.nebrin@astro.su.se
 
