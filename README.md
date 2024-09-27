@@ -34,11 +34,7 @@ Before installing this package, please make sure that [numpy](https://numpy.org/
 
 To install the package in the standard location, run the following in the root directory::
 
-    python setup.py install
-
-In order to install it in a separate directory::
-
-    python setup.py install --home=directory
+    pip install .
 
 The dependencies should be installed automatically during the installation process. If they fail for some reason, you can install them manually before installing this package. The list of required packages can be found in the requirements.txt file present in the root directory.
 
