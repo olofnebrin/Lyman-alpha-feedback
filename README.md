@@ -28,13 +28,9 @@ The file in this folder inside `data` contains the data for the cross-section fo
 
 ### Installation
 
-Before installing this package, please make sure that [numpy](https://numpy.org/) is installed. One can install a stable version of this package using pip by running the following command::
+Before installing this package, please make sure that [numpy](https://numpy.org/) is installed. To install the package from source, one should clone this package running the following::
 
-    pip install git+https://github.com/sambit-giri/Lyman-alpha-feedback.git
-
-To install the package from source, one should clone this package running the following::
-
-    git clone https://github.com/sambit-giri/Lyman-alpha-feedback.git
+    git clone https://github.com/olofnebrin/Lyman-alpha-feedback.git
 
 To install the package in the standard location, run the following in the root directory::
 
