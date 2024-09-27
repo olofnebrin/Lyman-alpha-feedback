@@ -4,7 +4,6 @@ Setup script
 
 import setuptools
 from setuptools import Extension, setup, find_packages
-from Cython.Build import cythonize
 import numpy as np
 import os
 
