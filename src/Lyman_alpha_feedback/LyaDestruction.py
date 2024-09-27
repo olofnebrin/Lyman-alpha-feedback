@@ -2,7 +2,7 @@
     and the Lya destruction probability. """
 
 import numpy as np
-from ConstantsParameters import *
+from .ConstantsParameters import *
 
 ###############################################################
 #######                                                 #######

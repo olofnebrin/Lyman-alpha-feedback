@@ -1,6 +1,6 @@
 """ Some example plots of M_F, as predicted by the fitting function. """
 
-from M_F_fit import *
+from Lyman_alpha_feedback import *
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoMinorLocator

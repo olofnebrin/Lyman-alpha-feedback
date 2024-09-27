@@ -11,16 +11,13 @@ import os
 # Read requirements from requirements.txt
 with open('requirements.txt') as f:
     requirements = f.read().splitlines()
-
-# Specify the package names you want to include
-packages = find_packages(where="src", include=["Lyman-alpha-feedback*"])
                          
 setup(
-    name='anaxagoras',
-    version='0.0.1',
+    name='Lyman_alpha_feedback',
+    version='1.0.0',
     author='Authors',
     author_email='corresponding.author@somemail.com',
-    packages=packages,
+    packages=find_packages(where="src"),
     package_dir={"": "src"},
     package_data={
         '': ['input_data/**/*'],  # Include all files in all subfolders of input_data
