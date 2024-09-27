@@ -20,11 +20,11 @@ This function is an implementation of the fit to the Lyα force multiplier M<sub
 
 #### MCRT_forcemultiplier:
 
-This [folder](https://github.com/olofnebrin/Lyman-alpha-feedback/tree/pip-release/src/Lyman_alpha_feedback/input_data/MCRT_forcemultiplier) contains the Monte Carlo radiative transfer (MCRT) data for the Lyα force multiplier, as plotted in Fig. 5 in [Nebrin et al. (2024)](INSERT). Each data file is named in a self-explanatory manner with respect to Fig. 5. In each file, the first column is a<sub>v</sub>τ<sub>cl</sub>, and the second column the force multiplier M<sub>F</sub>. If you use this data, cite [Nebrin et al. (2024)](INSERT), and [Smith et al. (2015)](https://ui.adsabs.harvard.edu/abs/2015MNRAS.449.4336S/abstract). 
+This folder inside `data` contains the Monte Carlo radiative transfer (MCRT) data for the Lyα force multiplier, as plotted in Fig. 5 in [Nebrin et al. (2024)](INSERT). Each data file is named in a self-explanatory manner with respect to Fig. 5. In each file, the first column is a<sub>v</sub>τ<sub>cl</sub>, and the second column the force multiplier M<sub>F</sub>. If you use this data, cite [Nebrin et al. (2024)](INSERT), and [Smith et al. (2015)](https://ui.adsabs.harvard.edu/abs/2015MNRAS.449.4336S/abstract). 
 
 #### H_H_cross_section:
 
-The file in this [folder](https://github.com/olofnebrin/Lyman-alpha-feedback/tree/pip-release/src/Lyman_alpha_feedback/input_data/H_H_cross_section) contains the data for the cross-section for H(2s) + H(1s) -> H(2p) + H(1s). The first column is collision energy (in eV), and the second column the cross-section (in cm<sup>2</sup>). If you use this data, cite [Nebrin et al. (2024)](INSERT), [Hörnquist et al. (2022)](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.106.062821), and [Hörnquist et al. (2023)](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.108.052811).
+The file in this folder inside `data` contains the data for the cross-section for H(2s) + H(1s) -> H(2p) + H(1s). The first column is collision energy (in eV), and the second column the cross-section (in cm<sup>2</sup>). If you use this data, cite [Nebrin et al. (2024)](INSERT), [Hörnquist et al. (2022)](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.106.062821), and [Hörnquist et al. (2023)](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.108.052811).
 
 ### Installation
 
