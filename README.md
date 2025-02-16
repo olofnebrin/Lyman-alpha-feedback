@@ -7,7 +7,7 @@
 
 This repository contains files and data related to the following paper on Lyman-α (Lyα) radiation pressure feedback:
 
-[Nebrin et al. (2025), 'Lyman-α feedback prevails at Cosmic Dawn: Implications for the galaxies, stars, and star clusters', MNRAS, 537, 2, 1646-1687](https://ui.adsabs.harvard.edu/abs/2025MNRAS.537.1646N/abstract).
+[Nebrin et al. (2025), 'Lyman-α feedback prevails at Cosmic Dawn: Implications for the first galaxies, stars, and star clusters', MNRAS, 537, 2, 1646-1687](https://ui.adsabs.harvard.edu/abs/2025MNRAS.537.1646N/abstract).
 
 Radiation pressure from trapped Lyα photons is one of the most important processes that regulate how efficiently the Universe form stars. 
 
